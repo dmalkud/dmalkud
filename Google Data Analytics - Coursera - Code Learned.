@@ -1,0 +1,13 @@
+"""SQL Basics"""
+SELECT
+FROM
+WHERE
+
+'''Using Case command'''
+SELECT
+    CASE
+        WHEN Name = 'Chad Lucero' then 'chud'
+        ELSE Name
+        END AS cleaned_name
+FROM `gda-coursera.customer_data.customer_address` 
+
