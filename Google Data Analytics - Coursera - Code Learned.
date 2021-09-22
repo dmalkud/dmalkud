@@ -9,5 +9,17 @@ SELECT
         WHEN Name = 'Chad Lucero' then 'chud'
         ELSE Name
         END AS cleaned_name
-FROM `gda-coursera.customer_data.customer_address` 
+FROM `gda-coursera.customer_data.customer_address`
+
+
+'''Sorting Descending Using the ORDER BY function'''
+SELECT
+    *
+FROM
+    `gda-coursera.movie_data.movies` 
+ORDER BY 
+    Release_date DESC
+    
+
+ 
 
