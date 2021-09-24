@@ -12,13 +12,18 @@ SELECT
 FROM `gda-coursera.customer_data.customer_address`
 
 
-'''Sorting Descending Using the ORDER BY function'''
+'''Sorting Descending Using the ORDER BY function, and WHERE is used to Filter the data, The AND function is used for additional filters.'''
 SELECT
     *
 FROM
-    `gda-coursera.movie_data.movies` 
+    `gda-coursera.movie_data.movies`
+WHERE 
+    genre = 'Comedy'
+AND
+    Revenue > 300000000
 ORDER BY 
     Release_date DESC
+    
     
 
  
