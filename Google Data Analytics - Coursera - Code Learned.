@@ -47,6 +47,65 @@ FROM
     Employee_data.employees
 RIGHT JOIN
     Employee_data.departments ON employees.department_id = departments.department_id
+    
+'''Aliases'''
+Select
+    Column(s) name
+From
+    table_name AS Alias_name;
+    
+SELECT 
+    edu.country_name,
+    summary.country_code,
+    edu.value
+FROM 
+    `bigquery-public-data.world_bank_intl_education.international_education` AS edu
+INNER JOIN 
+    `bigquery-public-data.world_bank_intl_education.country_summary` AS summary
+ON edu.country_code = summary.country_code
+
+'''If using AS results in an error when running a query because the SQL database you are working with doesn't support it,
+you can leave it out. In the previous examples, the alternate syntax for aliasing a table or column would be'''
+
+FROM
+    table_name alias_name
+
+SELECT
+    column_name alias_name
+    
+'''Adding columns in SELECT STATEMENT"
+SELECT
+    Date,
+    region,
+    Small_Bags,
+    Large_Bags,
+    XLarge_Bags,
+    Total_Bags,
+    Small_Bags+Large_Bags+XLarge_Bags AS Total_Bags_Calc
+FROM `gda-coursera.avacado_data.avocado_prices`
+
+'''Using Division and Multiplication in SELECT STATEMENT'''
+SELECT
+    Date,
+    region,
+    Total_Bags,
+    Small_Bags,
+    (Small_Bags/Total_Bags)*100 AS Percent_Of_Small_Bags
+FROM
+    avacado_data.avocado_prices
+WHERE 
+    Total_Bags <> 
+'''The Extract command lets us pull a part of the date to use'''
+SELECT
+    EXTRACT (YEAR FROM START TIME) AS year
+    count(*) AS number_of_rides
+FROM
+    bigquery-public-data.new_york.citibike_trips
+GROUP BY
+    year
+ORDER BY
+    year
+    
 
  
 
