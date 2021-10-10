@@ -106,6 +106,78 @@ GROUP BY
 ORDER BY
     year
     
+'''With Clause is used to meke Temp Tables'''
+WITH
+    trips_over_1_hr AS (
+    SELECT
+        *
+    FROM
+        bigquery-public-data.new_york.citibikes_trips
+    WHERE
+        tripduration >= 60
+        )
+        
+##Count hoe many trips were 60+ long
+
+SELECT
+    Count(*) AS cnt
+FROM
+    trips_over_1_hr
+    
+'''Anoter example of using with to create temp table"
+WITH
+    longest_used_bike AS (
+        SELECT 
+            bikeid,
+            SUM(duration_minutes) AS trip_duration
+        FROM 
+            bigquery-public-data.austin_bikeshare.bikeshare_trips
+        GROUP BY 
+            bikeid
+        ORDER BY 
+            trip_duration DESC 
+        LIMIT 1
+    )
+
+## Find station at which the longest used bike leaves most often
+
+SELECT 
+    trips.start_station_id,
+    COUNT(*) AS trip_ct
+FROM
+    Longest_used_bike AS Longest
+FULL JOIN 
+    `bigquery-public-data.austin_bikeshare.bikeshare_trips` AS trips
+ON 
+    longest.bikeid = trips.bikeid
+GROUP BY
+    trips.start_station_id
+ORDER BY 
+    trip_ct DESC 
+LIMIT 1
+
+'''Using SELECT INTO to copy data from one table into another temporatily'''
+
+SELECT
+    *
+INTO
+    AfrricaSales
+FROM
+    GlobalSales
+WHERE
+    Region = 'Africa'
+    
+'''You can use the CREATE TABLE option to create a table which will be added to database, but this is useful when multiple people are using the data'''
+
+CREATE TABLE
+    AfricanSales AS (
+        SELECT
+            *
+        FROM
+            GlobalSales
+        WHERE
+            region = "Africa"
+        )   
 
  
 
